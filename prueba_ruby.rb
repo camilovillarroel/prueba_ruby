@@ -13,18 +13,23 @@ def promedios(curso)
     curso.each do |alumno|
         promedio = 0
         acu = 0
-        puts "El alumno #{alumno[0]} tiene un promedio de: "
-        alumno.each_with_index do |nota,index|
-            
-            
+        puts "El alumno(a) #{alumno[0]} tiene un promedio de: "
+            alumno.each_with_index do |nota,index|
             acu += nota.to_i if index != 0
-            
-        end
+            end
         promedio = acu/(alumno.length - 1).to_f
-    puts promedio    
+        puts promedio    
     end    
-
 end
+
+def inasistencias(curso)
+
+    curso.each do |alumno|
+        puts "El alumno(a) #{alumno[0]} tiene #{alumno.count('A')} inasistencias" 
+    end
+            
+
+end    
     
 
 
@@ -58,6 +63,8 @@ while option != 4 do
     if option == 1
         promedios(curso)
     elsif option == 2
+        inasistencias(curso)
+
     elsif option == 3
     elsif option == 4
         puts 'Salir'
