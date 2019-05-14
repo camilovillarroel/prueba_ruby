@@ -27,29 +27,30 @@ def inasistencias(curso)
     curso.each do |alumno|
         puts "El alumno(a) #{alumno[0]} tiene #{alumno.count('A')} inasistencias" 
     end
-            
+end
 
-end    
+
+def alumno_aprobado(curso)
+    puts "Alumnos aprobados: "
+    curso.each do |alumno|
+        promedio = 0
+        acu = 0
+        alumno.each_with_index do |nota,index|
+            acu += nota.to_i if index != 0
+        end
+    promedio = acu/(alumno.length - 1).to_f
+    puts alumno[0] if aprobar(promedio) == true 
     
+    end
+end
 
-
+def aprobar(nota)
+    if nota >= 5.0
+        return true
+    end
+end
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 option = 0
 while option != 4 do
     puts 'Ingrese una opción:'
@@ -62,12 +63,16 @@ while option != 4 do
 
     if option == 1
         promedios(curso)
+
     elsif option == 2
         inasistencias(curso)
 
     elsif option == 3
+        alumno_aprobado(curso)
+
     elsif option == 4
         puts 'Salir'
+
     else
         puts 'Valor ingresado no válido, pruebe con una opción válida'
     end
