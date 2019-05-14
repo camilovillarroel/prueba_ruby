@@ -15,7 +15,7 @@ def promedios(curso)
         acu = 0
         puts "El alumno(a) #{alumno[0]} tiene un promedio de: "
             alumno.each_with_index do |nota,index|
-            acu += nota.to_i if index != 0
+            acu += nota.to_f if index != 0
             end
         promedio = acu/(alumno.length - 1).to_f
         puts promedio    
@@ -30,25 +30,20 @@ def inasistencias(curso)
 end
 
 
-def alumno_aprobado(curso)
+def alumno_aprobado(curso, nota_aprob = 5.0)
     puts "Alumnos aprobados: "
     curso.each do |alumno|
         promedio = 0
         acu = 0
         alumno.each_with_index do |nota,index|
-            acu += nota.to_i if index != 0
+            acu += nota.to_f if index != 0
         end
     promedio = acu/(alumno.length - 1).to_f
-    puts alumno[0] if aprobar(promedio) == true 
+    puts alumno[0] if promedio >= nota_aprob
     
     end
 end
 
-def aprobar(nota)
-    if nota >= 5.0
-        return true
-    end
-end
     
     
 option = 0
@@ -68,7 +63,14 @@ while option != 4 do
         inasistencias(curso)
 
     elsif option == 3
-        alumno_aprobado(curso)
+        puts "Ingrese nota de aprobación, por defecto será 5.0 si no ingresa nota o corresponde a un valor no válido (0, letras,etc)"
+        nota_aprob = gets.chomp.to_f
+        if nota_aprob > 0
+            alumno_aprobado(curso, nota_aprob)
+        else
+            alumno_aprobado(curso)
+        end
+         
 
     elsif option == 4
         puts 'Salir'
