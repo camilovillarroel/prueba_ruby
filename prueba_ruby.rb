@@ -5,7 +5,27 @@ def read_alum(file_name)
     alum
 end
 
+curso = read_alum('alumnos.csv')
 
+
+def promedios(curso)
+
+    curso.each do |alumno|
+        promedio = 0
+        acu = 0
+        puts "El alumno #{alumno[0]} tiene un promedio de: "
+        alumno.each_with_index do |nota,index|
+            
+            
+            acu += nota.to_i if index != 0
+            
+        end
+        promedio = acu/(alumno.length - 1).to_f
+    puts promedio    
+    end    
+
+end
+    
 
 
     
@@ -36,6 +56,7 @@ while option != 4 do
 
 
     if option == 1
+        promedios(curso)
     elsif option == 2
     elsif option == 3
     elsif option == 4
